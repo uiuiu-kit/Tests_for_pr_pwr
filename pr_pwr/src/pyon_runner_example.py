@@ -3,6 +3,9 @@ from python_runner import PatchedStdinRunner
 def get_input(prompt):
     return "some input"
 
+def show_output(color, text):
+    print(text)
+
 def send_output(part_type, text):
     if part_type == "stdout":
         color = "white"
@@ -10,7 +13,7 @@ def send_output(part_type, text):
         color = "red"
     else:
         color = "blue"
-    print(color, text)
+    show_output(color, text)
 
 def callback(event_type, data):
     if event_type == "input":
