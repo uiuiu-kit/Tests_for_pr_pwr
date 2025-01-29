@@ -3,7 +3,7 @@ import {PyodideClient, SharedArrayBuffer} from "pyodide-worker-runner";
 import {makeChannel} from "sync-message";
 
 // get the code to execute
-const response = await fetch("./script.py");
+const response = await fetch("./src/script.py");
 const code = await response.text();
 
 console.log('Cross-Origin Isolated:', crossOriginIsolated);
