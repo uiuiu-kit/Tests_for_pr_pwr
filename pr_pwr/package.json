@@ -1,0 +1,21 @@
+{
+  "name": "pr_pwr",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "comlink": "^4.4.2",
+    "pyodide-worker-runner": "^1.4.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.11"
+  }
+}
