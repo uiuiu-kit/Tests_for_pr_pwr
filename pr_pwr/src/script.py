@@ -1,4 +1,2 @@
-def main():
-    return "Hans"
-
-main()
+print("Hello")
+print(f"World")

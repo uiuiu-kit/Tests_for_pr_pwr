@@ -20,19 +20,22 @@ await taskClient.call(
 );
 
 // get the code to execute
-const response = await fetch("./src/pyodide_runner_example.py");
+const response = await fetch("./src/script.py");
 const code = await response.text();
 
-function updateOutput(text: string) {
+async function updateOutput(text: string) {
   console.log(text);
 }
 
-function handleInput(question: string) {
-  prompt(question)
+async function handleInput(question: string) {
+  const answer = prompt(question)
+  return answer
 }
 
-function handleMain() {
+async function handleMain() {
+  let result = null;
   console.log('Main thread running');
+  taskClient.writeMessage(result);
 }
 
 // pass code to webworker and run it
