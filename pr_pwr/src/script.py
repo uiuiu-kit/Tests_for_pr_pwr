@@ -1,1 +1,4 @@
-print("Hans")
+def main():
+    return "Hans"
+
+main()

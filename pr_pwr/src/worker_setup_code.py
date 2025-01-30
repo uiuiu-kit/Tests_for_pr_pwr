@@ -1,4 +1,4 @@
-from python_runner import PyodideRunner
+from runner import PyodideRunner
 
 defaultrunner = PyodideRunner()
 
