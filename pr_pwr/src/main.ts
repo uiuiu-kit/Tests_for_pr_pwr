@@ -23,13 +23,26 @@ await taskClient.call(
 const response = await fetch("./src/script.py");
 const code = await response.text();
 
-async function updateOutput(text: string) {
-  console.log(text);
+async function updateOutput(outputArr: Array<Object>) {
+  for (const part of outputArr) {
+    const type = part["type"]
+    const text = part["text"]
+    if (["stderr", "traceback", "syntax_error"].includes(type)) {
+      console.error(text);
+    } else {
+      console.log(text);
+    }
+  }
 }
 
 async function handleInput(question: string) {
   const answer = prompt(question)
   return answer
+}
+
+async function abortPyodide() {
+  
+  await taskClient.interrupt();
 }
 
 async function handleMain() {
@@ -47,20 +60,3 @@ const resultPromise =
     Comlink.proxy(handleInput),
     Comlink.proxy(handleMain),
 );
-
-const interruptedDefault = "interruptedDefault"
-
-// Get the final result:
-let result: String;
-try {
-  result = await resultPromise;
-} catch (e) {
-  if (e.type === "InterruptError") {
-    // The worker was terminated by client.interrupt()
-    result = interruptedDefault;
-  } else {
-    throw e;
-  }
-}
-
-console.log(result)
