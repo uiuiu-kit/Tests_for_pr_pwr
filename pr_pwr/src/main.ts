@@ -35,8 +35,8 @@ async function updateOutput(outputArr: Array<Object>) {
 }
 
 async function handleInput(question: string, type: string = "string") {
-  //const answer = prompt(question)
-  return "Hans"
+  const answer = prompt(question)
+  taskClient.writeMessage(answer)
 }
 
 async function handleMain() {
