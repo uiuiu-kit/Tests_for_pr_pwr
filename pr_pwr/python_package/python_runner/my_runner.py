@@ -11,4 +11,4 @@ def set_callback(callback):
     return
 
 async def run_async(code):
-    defaultrunner.run(code)
+    await defaultrunner.run_async(code)

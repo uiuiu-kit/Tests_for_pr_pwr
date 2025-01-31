@@ -3,7 +3,6 @@ import {PyodideClient} from "pyodide-worker-runner";
 import {makeChannel} from "sync-message";
 import * as Comlink from "comlink";
 
-
 // Setup the channel to communicat between the main thread and the worker thread
 let channel = makeChannel();
 let pyodideWorker: Worker;
@@ -35,18 +34,13 @@ async function updateOutput(outputArr: Array<Object>) {
   }
 }
 
-async function handleInput(question: string) {
-  const answer = prompt(question)
-  return answer
-}
-
-async function abortPyodide() {
-  
-  await taskClient.interrupt();
+async function handleInput(question: string, type: string = "string") {
+  //const answer = prompt(question)
+  return "Hans"
 }
 
 async function handleMain() {
-  let result = null;
+  let result = NaN;
   console.log('Main thread running');
   taskClient.writeMessage(result);
 }
@@ -60,3 +54,7 @@ const resultPromise =
     Comlink.proxy(handleInput),
     Comlink.proxy(handleMain),
 );
+
+async function abortPyodide() {
+  await taskClient.interrupt();
+}
